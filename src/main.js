@@ -2,9 +2,6 @@ import './style.css';
 import {$,createElement,a}  from './functions'
 import heroes  from './store'
 
-
-
-
 const $arenas  = $('.arenas');
 
 const createPlayer = (name,heroObj)=>{
@@ -16,10 +13,11 @@ try{
     $progressbar.classList.add(`progressbar`);
     
     const $life = createElement('div');
-    $life.classList.add(`${heroObj.hp}`);
+    $life.classList.add(`life`);
+    $life.style.width=`${heroObj.hp}%`;
     
-     const $name = createElement('div');
-     $name.classList.add(`name`);
+    const $name = createElement('div');
+    $name.classList.add(`name`);
     $name.innerHTML = `${heroObj.name}`;
     
     const $character = createElement('div');
@@ -48,5 +46,3 @@ try{
 createPlayer('player1',heroes[0]);
 
 createPlayer('player2',heroes[1]);
-
-//console.log(F.$);
