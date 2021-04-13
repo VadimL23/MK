@@ -1,5 +1,5 @@
 import './style.css';
-import {$,createElement,changeHP,playerWin,elHP,renderHP}  from './functions'
+import {$,createElement,changeHP,playerWin,elHP,renderHP,createReloadButton}  from './functions'
 import heroes  from './store'
 
 
@@ -13,6 +13,10 @@ player2.player = 2;
 
 
 const $arenas  = $('.arenas');
+const arenasAppend = (child)=>{
+   return $arenas.appendChild(child);
+}
+
 const $randomButton = $('#button');
 
 const createPlayer = (name,heroObj)=>{
@@ -58,29 +62,27 @@ $randomButton.addEventListener('click',()=>{
   changeHP.call(player2,Math.ceil(Math.random()*20));
   renderHP.call(player1,$player1);
   renderHP.call(player2,$player2);
+ 
     
 if (player1.hp == 0 || player2.hp == 0 ){
      $randomButton.disabled = true;  
   }
     
 if  (player1.hp === 0 && player1.hp< player2.hp){
-      
-       $arenas.appendChild(playerWin(player2.name));
+      arenasAppend(playerWin(player2.name));
+      arenasAppend(createReloadButton());
  
   }
     else if ( player2.hp === 0 && player2.hp< player1.hp){
-        
-       $arenas.appendChild(playerWin(player1.name));
-  
+      arenasAppend(playerWin(player1.name));
+      arenasAppend(createReloadButton());
     }
     
     else if (player1.hp === 0 &&  player2.hp === 0){
-        
-        playerWin();
+      arenasAppend(playerWin());
+      arenasAppend(createReloadButton());
     }
-    
 
-    
     
 });
     
