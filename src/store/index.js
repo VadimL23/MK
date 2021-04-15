@@ -1,4 +1,12 @@
- const heroes = [
+const HIT = {
+    head: 30,
+    body: 25,
+    foot: 20,
+}
+const ATTACK = ['head', 'body', 'foot']; 
+
+
+const heroes = [
     {
         id:1,
         name:'Scorpion',
@@ -61,3 +69,8 @@
 ];
  
  export default heroes;
+
+export {
+    HIT,
+    ATTACK,
+  }

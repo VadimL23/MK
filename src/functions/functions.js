@@ -1,3 +1,4 @@
+import { HIT, ATTACK } from '../store';
 
 const setPlayerWidth = (selector,width) =>{
     selector.querySelector('.life').style.width = width + '%';
@@ -41,6 +42,21 @@ function createReloadButton(){
     return $reloadWrap;
 }
 
+function getRandom(arr){
+  return  arr[Math.floor(Math.random()*arr.length)];
+}
+
+function enemyAttack(){
+    return {
+        hit:getRandom(ATTACK),
+        defence:getRandom(ATTACK),
+        value:HIT[`${getRandom(ATTACK)}`]
+    }
+}
+
+
+
+
  export {
         $,
         createElement,
@@ -48,5 +64,6 @@ function createReloadButton(){
         playerWin,
         elHP,
         renderHP,
-        createReloadButton
+        createReloadButton,
+        enemyAttack
  }
