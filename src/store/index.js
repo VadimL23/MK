@@ -2,7 +2,7 @@
     {
         id:1,
         name:'Scorpion',
-        hp:80,
+        hp:100,
         img:"http://reactmarathon-api.herokuapp.com/assets/scorpion.gif",
         weapon:[],
         attack:()=>{
