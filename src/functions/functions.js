@@ -24,11 +24,12 @@ function changeHP(val){
 
 
 function elHP(){
-    return this.player;
+  let life = $(`.player${this.player} .life`);
+  return life;
 }
 
-function renderHP(selector){
- selector.querySelector('.life').style.width = this.hp + '%';
+function renderHP(){
+ elHP.call(this).style.width = this.hp + '%';
 };
 
 function createReloadButton(){

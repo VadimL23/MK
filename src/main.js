@@ -22,10 +22,7 @@ const $randomButton = $('#button');
 const createPlayer = (name,heroObj)=>{
 try{
     const $playerDiv = createElement('div',`${name}`);
-
-       
     const $progressbar = createElement('div',`progressbar`);
- 
     
     const $life = createElement('div',`life`);
     $life.style.width=`${heroObj.hp}%`;
@@ -60,9 +57,11 @@ $randomButton.addEventListener('click',()=>{
    
   changeHP.call(player1,Math.ceil(Math.random()*20));
   changeHP.call(player2,Math.ceil(Math.random()*20));
-  renderHP.call(player1,$player1);
-  renderHP.call(player2,$player2);
+  renderHP.call(player1);
+  renderHP.call(player2);
  
+    console.log(elHP.call(player1));
+    
     
 if (player1.hp == 0 || player2.hp == 0 ){
      $randomButton.disabled = true;  
