@@ -1,23 +1,40 @@
 import './style.css';
-import {$,createElement,changeHP,playerWin,elHP,renderHP,createReloadButton}  from './functions'
-import heroes  from './store'
+import {$,createElement,changeHP,playerWin,elHP,renderHP,createReloadButton,enemyAttack}  from './functions';
+import heroes, { HIT, ATTACK } from './store';
+
+
 
 
 const player1 = heroes[Math.floor(Math.random()*5)];
 player1.player = 1;
+player1.changeHP = changeHP;
+player1.renderHP = renderHP;
 
 const player2 = heroes[Math.floor(Math.random()*5)];
 player2.player = 2;
+player2.changeHP = changeHP;
+player2.renderHP = renderHP;
+
+const players = [heroes[Math.floor(Math.random()*5)],heroes[Math.floor(Math.random()*5)]];
+
+players.forEach((pl,index)=>{
+    pl.player=index+1;
+    pl.changeHP = changeHP;
+    pl.renderHP = renderHP;
+});
 
 
 
-
+const $control = $('.control');
 const $arenas  = $('.arenas');
+const $randomButton = $('#button');
+
+
 const arenasAppend = (child)=>{
    return $arenas.appendChild(child);
 }
 
-const $randomButton = $('#button');
+
 
 const createPlayer = (name,heroObj)=>{
 try{
@@ -34,16 +51,11 @@ try{
    
     const $img = createElement('img');
     $img.src=heroObj.img;
-    
     $progressbar.appendChild($life);
     $progressbar.appendChild($name);
-   
     $character.appendChild($img);
-    
     $playerDiv.appendChild($progressbar);
     $playerDiv.appendChild($character);
-    
-
     return $playerDiv;
 }
     catch(err){
@@ -54,41 +66,70 @@ try{
 
 
 $randomButton.addEventListener('click',()=>{
-   
-  changeHP.call(player1,Math.ceil(Math.random()*20));
-  changeHP.call(player2,Math.ceil(Math.random()*20));
-  renderHP.call(player1);
-  renderHP.call(player2);
- 
-    console.log(elHP.call(player1));
+       window.location.reload();
+});
+
+
+let formObj = {};
+
+$control.addEventListener("submit",(e)=>{
+    e.preventDefault();
+  
+    for (let value of e.target){
+       if (value.checked){
+          formObj[value.name] = value.value;
+       }
+    }
     
     
-if (player1.hp == 0 || player2.hp == 0 ){
+    
+    
+    
+  players.forEach(pl=>{
+     
+     
+      pl.enemyAttack = enemyAttack();
+    
+      console.log('Name:',pl.name);
+      console.log(`player${pl.player} :`, pl.enemyAttack);
+      console.log('formObj :',formObj);
+      
+      if (pl.enemyAttack.hit !== formObj.defence) {
+      pl.changeHP(pl.enemyAttack.value);
+      pl.renderHP();          
+          
+     }
+      
+  });
+    
+  
+if (players[0].hp == 0 || players[1].hp == 0 ){
      $randomButton.disabled = true;  
   }
     
-if  (player1.hp === 0 && player1.hp< player2.hp){
-      arenasAppend(playerWin(player2.name));
+if  (players[0].hp === 0 && players[0].hp< players[1].hp){
+      arenasAppend(playerWin(players[1].name));
       arenasAppend(createReloadButton());
  
   }
-    else if ( player2.hp === 0 && player2.hp< player1.hp){
-      arenasAppend(playerWin(player1.name));
+    else if (players[1].hp === 0 && players[1].hp< players[0].hp){
+      arenasAppend(playerWin(players[0].name));
       arenasAppend(createReloadButton());
     }
     
-    else if (player1.hp === 0 &&  player2.hp === 0){
+    else if (players[0].hp === 0 &&  players[1].hp === 0){
       arenasAppend(playerWin());
       arenasAppend(createReloadButton());
     }
-
-    
+     
 });
+
+
+
+
     
-const $player1 = createPlayer('player1',player1);
-const $player2 = createPlayer('player2',player2);
+const $player1 = createPlayer('player1',players[0]);
+const $player2 = createPlayer('player2',players[1]);
 
-
-$arenas.appendChild($player1);
-
-$arenas.appendChild($player2);
+arenasAppend($player1);
+arenasAppend($player2);
