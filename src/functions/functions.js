@@ -1,10 +1,12 @@
-import { HIT, ATTACK } from '../store';
+import { HIT, ATTACK, logs } from '../store';
 
 const setPlayerWidth = (selector,width) =>{
     selector.querySelector('.life').style.width = width + '%';
 }
 
 const $ = (selector)=>{return document.querySelector(selector)}
+
+const $chat = $(".chat");
 
 const createElement = (el, className)=>{
     const E = document.createElement(el);
@@ -55,7 +57,47 @@ function enemyAttack(){
 }
 
 
+function generateLogs(type, player1, player2){
+ let text = "";
+    const date = new Date();
 
+
+    switch(type){
+    case "start":{
+           text = logs["start"].replace('[time]',date.toLocaleTimeString()).replace('[player1]',player1.name).replace('[player2]', player2.name); 
+        break;     
+        }
+            
+        case ("hit"):{
+        text= `[${date.toLocaleTimeString()}]` + '[' +
+         logs[type][Math.floor(Math.random()*logs[type].length)].replace('[playerKick]',player1.name).replace('[playerDefence]', player2.name)
+         + ']' + ` [- ${player1.hp}] [${player1.hp}/100]`;
+        break;
+        }
+            
+   case ("end"):{
+        text= `[${date.toLocaleTimeString()}]` + '[' +
+         logs[type][Math.floor(Math.random()*logs[type].length)].replace('[playerWins]',player1.name).replace('[playerLose]', player2.name)
+         + ']';
+       
+       break; 
+   }
+            
+         case ("draw"):{
+         text = logs["draw"]
+       
+       break; 
+   }
+    }
+    
+    
+    const el = `<p> ${text} </p>`;
+    $chat.insertAdjacentHTML('afterbegin',el);
+ 
+  
+ 
+    
+}
 
  export {
         $,
@@ -65,5 +107,6 @@ function enemyAttack(){
         elHP,
         renderHP,
         createReloadButton,
-        enemyAttack
+        enemyAttack,
+        generateLogs,
  }

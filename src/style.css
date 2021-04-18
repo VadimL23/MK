@@ -14,6 +14,7 @@
 *,
 *:before,
 *:after {
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
 
@@ -29,10 +30,19 @@ body {
 }
 
 .root {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
     width: 100%;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     position: relative;
     background: #424466;
@@ -48,6 +58,7 @@ body {
     top: 0;
     z-index: 100;
     left: 50%;
+    -webkit-transform: translate(-450px, 0px);
     transform: translate(-450px, 0px);
     height: 100%;
 }
@@ -62,6 +73,7 @@ body {
     top: 0;
     z-index: 100;
     right: 50%;
+    -webkit-transform: translate(450px, 0px);
     transform: translate(450px, 0px);
     height: 100%;
 }
@@ -73,6 +85,8 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
 }
 
@@ -109,6 +123,8 @@ body {
     top: 59px;
     height: 28px;
     background-color: #cd0e03;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
 }
 
@@ -118,6 +134,9 @@ body {
 
 .player2 .progressbar {
     right: 38px;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+    -ms-flex-direction: row-reverse;
     flex-direction: row-reverse;
 }
 
@@ -128,6 +147,8 @@ body {
     top: 85px;
     height: 12px;
     background-color: #cd0e03;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
 }
 
@@ -137,6 +158,9 @@ body {
 
 .player2 .extralife {
     right: 38px;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+    -ms-flex-direction: row-reverse;
     flex-direction: row-reverse;
 }
 
@@ -194,6 +218,7 @@ body {
 }
 
 .player2 .character img {
+    -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
 }
 
@@ -209,6 +234,7 @@ body {
     top: 30%;
     width: 300px;
     left: 50%;
+    -webkit-transform: translate(-50%, 0%);
     transform: translate(-50%, 0%);
 }
 
@@ -230,6 +256,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     border-radius: 4px;
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     cursor: pointer;
     font-family: "Mortal Kombat 3";
@@ -278,6 +305,7 @@ body {
     top: 22%;
     left: 50%;
     font-size: 36px;
+    -webkit-transform: translate(-50%, 0%);
     transform: translate(-50%, 0%);
     text-transform: uppercase;
     z-index: 1000;
@@ -291,6 +319,7 @@ body {
     top: 54px;
     z-index: 1000;
     left: 50%;
+    -webkit-transform: translate(-50%, 0%);
     transform: translate(-50%, 0%);
 }
 
@@ -320,10 +349,20 @@ form:invalid button[class=button]:active::after {
     width: 200px;
     top: 60%;
     left: 50%;
+    -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
     justify-content: flex-start;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
     z-index: 1000;
 }
@@ -352,7 +391,11 @@ form:invalid button[class=button]:active::after {
     height: 50px;
     padding: 0 12px;
     font-family: 'Mortal Kombat 3';
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
     justify-content: space-between;
     color: #efefef;
 }
@@ -368,6 +411,7 @@ form:invalid button[class=button]:active::after {
     width: 80px;
     height: 50px;
     line-height: 50px;
+    -webkit-transition: 0.3s;
     transition: 0.3s;
     text-align: center;
     margin-top: -3px;
@@ -378,9 +422,11 @@ form:invalid button[class=button]:active::after {
     width: 80px;
     height: 50px;
     content: "";
+    -webkit-transform: scaleY(1.2);
     transform: scaleY(1.2);
     z-index: -1;
     margin-bottom: -50px;
+    -webkit-transition: 0.3s;
     transition: 0.3s;
 }
 .ul label span:hover {
@@ -397,8 +443,10 @@ input[type=radio]:checked + label > span {
 }
 input[type=radio]:checked + label > span::before {
     background: #f5d100;
+    -webkit-box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.2);
     box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.2);
 }
 input[type=radio]:checked + label > span:hover {
     background: none;
 }
+.chat p{color:white;padding: 0 50px}
