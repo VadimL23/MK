@@ -1,5 +1,33 @@
 import { HIT, ATTACK, logs } from '../store';
 
+const createPlayer = (name,heroObj)=>{
+try{
+    const $playerDiv = createElement('div',`${name}`);
+    const $progressbar = createElement('div',`progressbar`);
+    
+    const $life = createElement('div',`life`);
+    $life.style.width=`${heroObj.hp}%`;
+    
+    const $name = createElement('div',`name`);
+    $name.innerHTML = `${heroObj.name}`;
+    
+    const $character = createElement('div',`character`);
+   
+    const $img = createElement('img');
+    $img.src=heroObj.img;
+    $progressbar.appendChild($life);
+    $progressbar.appendChild($name);
+    $character.appendChild($img);
+    $playerDiv.appendChild($progressbar);
+    $playerDiv.appendChild($character);
+    return $playerDiv;
+}
+    catch(err){
+        console.log("Err create player ",err);
+         }
+    
+}
+
 const setPlayerWidth = (selector,width) =>{
     selector.querySelector('.life').style.width = width + '%';
 }
@@ -75,6 +103,13 @@ function generateLogs(type, player1, player2){
         break;
         }
             
+    case ("defence"):{
+        text= `[${date.toLocaleTimeString()}]` + '[' +
+         logs[type][Math.floor(Math.random()*logs[type].length)].replace('[playerKick]',player1.name).replace('[playerDefence]', player2.name)
+         + ']' + ` [- ${player1.hp}] [${player1.hp}/100]`;
+        break;
+        }
+            
    case ("end"):{
         text= `[${date.toLocaleTimeString()}]` + '[' +
          logs[type][Math.floor(Math.random()*logs[type].length)].replace('[playerWins]',player1.name).replace('[playerLose]', player2.name)
@@ -83,11 +118,13 @@ function generateLogs(type, player1, player2){
        break; 
    }
             
-         case ("draw"):{
+    case ("draw"):{
          text = logs["draw"]
        
        break; 
    }
+            
+            
     }
     
     
@@ -109,4 +146,5 @@ function generateLogs(type, player1, player2){
         createReloadButton,
         enemyAttack,
         generateLogs,
+            createPlayer,
  }
