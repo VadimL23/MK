@@ -54,11 +54,6 @@ function changeHP(val){
 };
 
 
-function elHP(){
-  let life = $(`.player${this.player} .life`);
-  return life;
-}
-
 function renderHP(){
  elHP.call(this).style.width = this.hp + '%';
 };
@@ -141,7 +136,7 @@ function generateLogs(type, player1, player2){
         createElement,
         changeHP,
         playerWin,
-        elHP,
+       
         renderHP,
         createReloadButton,
         enemyAttack,
